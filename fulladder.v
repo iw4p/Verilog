@@ -29,7 +29,6 @@ fullAdder fadder1(.x(x1), .y(y1), .cin(cin1), .cout(cout1), .sum(sum1));
 
 initial begin
 $monitor("x=%b, y=%b, cin=%b => sum=%b, cout=%b ", x1, y1, cin1, sum1, cout1);
-#10
 x1=1'b0;y1=1'b0;cin1=1'b0;
 #10
 x1=1'b0;y1=1'b0;cin1=1'b1;

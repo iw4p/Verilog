@@ -42,13 +42,9 @@ module logicUnit8bit(x, y, sel1, sel0, f);
   input sel0, sel1;
   output [7:0]f;
 
-  wire nsel1, nsel0;
-  wire xOry, xAndy, xXory, xNot;
+  wire [7:0]xOry, xAndy, xXory, xNot;
   wire w1, w2, w3, w4;
-  
-  not(nsel1, sel1);
-  not(nsel0, sel0);
-  
+
   or(xOry[0], x[0], y[0]);
   or(xOry[1], x[1], y[1]);
   or(xOry[2], x[2], y[2]);
@@ -67,14 +63,14 @@ module logicUnit8bit(x, y, sel1, sel0, f);
   and(xAndy[6], x[6], y[6]);
   and(xAndy[7], x[7], y[7]);
 
-  xor(xOry[0], x[0], y[0]);
-  xor(xOry[1], x[1], y[1]);
-  xor(xOry[2], x[2], y[2]);
-  xor(xOry[3], x[3], y[3]);
-  xor(xOry[4], x[4], y[4]);
-  xor(xOry[5], x[5], y[5]);
-  xor(xOry[6], x[6], y[6]);
-  xor(xOry[7], x[7], y[7]);
+  xor(xXory[0], x[0], y[0]);
+  xor(xXory[1], x[1], y[1]);
+  xor(xXory[2], x[2], y[2]);
+  xor(xXory[3], x[3], y[3]);
+  xor(xXory[4], x[4], y[4]);
+  xor(xXory[5], x[5], y[5]);
+  xor(xXory[6], x[6], y[6]);
+  xor(xXory[7], x[7], y[7]);
 
   not(xNot[0], x[0]);
   not(xNot[1], x[1]);
@@ -90,7 +86,7 @@ endmodule
 module test_logicUnit8bit;
   reg [7:0]xt, yt;
   reg sel1t, sel0t;
-  wire ft;
+  wire [7:0]ft;
   logicUnit8bit lu8bit(.x(xt), .y(yt), .sel1(sel1t), .sel0(sel0t), .f(ft));
   initial begin
     $monitor("x=%b, y=%b, sel1=%b, sel0=%b => f=%b", xt, yt, sel1t, sel0t, ft);
@@ -103,4 +99,3 @@ module test_logicUnit8bit;
     xt=8'b01101100; yt=8'b00010111; sel1t=1'b1; sel0t=1'b1; 
   end
 endmodule
-  
